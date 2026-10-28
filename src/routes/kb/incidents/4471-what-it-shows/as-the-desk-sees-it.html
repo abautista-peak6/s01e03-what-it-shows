@@ -79,11 +79,14 @@
         </tbody>
       </table>
       <h2>Parser</h2>
+      <p>Ticket: <a href="https://github.com/abautista-peak6/s01e03-what-it-shows/issues/1">parser</a>.</p>
       <p>The shared parser reads the month before the day. These tenants write the day before the month. A booking on 7 April is stored as 4 July. That is <code>parser</code>.</p>
       <p>Intake tags a report <code>hint</code> when the browser locale is <code>en-US</code>. That tag is a guess. Reports with that guess stay under <code>parser</code> when they did not come through the booking-v3 form. The cause follows the tenant locale and the form, which is what <code>causeOf</code> already computes.</p>
       <h2>Hint</h2>
+      <p>Ticket: <a href="https://github.com/abautista-peak6/s01e03-what-it-shows/issues/2">hint</a>.</p>
       <p><code>booking-v3</code> prints <code>MM/DD/YYYY</code> under the date field. People type the month first. The form then reads the field the tenant's way, day first. The calendar shows the same kind of swap. The bug is the hint, which is what <code>causeOf</code> returns for a form report on that form.</p>
       <h2>One day</h2>
+      <p>Ticket: <a href="https://github.com/abautista-peak6/s01e03-what-it-shows/issues/3">one day</a>.</p>
       <p><code>desk-notes.json</code> lists these under <code>oneDayMove</code>. The day moves by one. They were still merged into #4471 and counted inside <code>parser</code>.</p>
       <ul>
         <li>An invite says Tuesday 12 May. The calendar says Monday 11 May.</li>

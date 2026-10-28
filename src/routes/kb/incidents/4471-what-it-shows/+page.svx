@@ -24,6 +24,8 @@ One known issue was the wrong close. The counts below are the split.
 
 ## Parser
 
+Ticket: [parser](https://github.com/abautista-peak6/s01e03-what-it-shows/issues/1).
+
 The shared parser reads the month before the day. These tenants write the day before the month.
 A booking on 7 April is stored as 4 July. That is `parser`.
 
@@ -33,11 +35,15 @@ The cause follows the tenant locale and the form, which is what `causeOf` alread
 
 ## Hint
 
+Ticket: [hint](https://github.com/abautista-peak6/s01e03-what-it-shows/issues/2).
+
 `booking-v3` prints `MM/DD/YYYY` under the date field. People type the month first.
 The form then reads the field the tenant's way, day first. The calendar shows the same kind of swap.
 The bug is the hint, which is what `causeOf` returns for a form report on that form.
 
 ## One day
+
+Ticket: [one day](https://github.com/abautista-peak6/s01e03-what-it-shows/issues/3).
 
 `desk-notes.json` lists these under `oneDayMove`. The day moves by one. They were still merged into #4471 and counted inside `parser`.
 
