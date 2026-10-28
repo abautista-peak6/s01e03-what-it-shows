@@ -4,7 +4,7 @@ title: '#4471 · three problems, not one'
 owner: abautista-peak6
 status: open
 reviewed: 2026-10-28
-signature: abautista-peak6
+signature: "v1.eyJzdWIiOiI0NzIwIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyMjc4NjQsImV4cCI6MTc5MzMxNDI2NH0.GwPjKrMABJpybY9oGSpJOuvuXzzAhAKO9awj2mKJ6UU"
 ---
 
 <script>
