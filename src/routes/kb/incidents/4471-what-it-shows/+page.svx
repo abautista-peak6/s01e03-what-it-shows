@@ -55,4 +55,13 @@ Ticket: [one day](https://github.com/abautista-peak6/s01e03-what-it-shows/issues
 
 None of these exchanges the month and the day. The original table footnotes them and still files them under `parser`.
 
+## Closed 5 October
+
+Engineering closed #4471.
+
+- `parser` is fixed: `fix(dates): parse dd/mm for eu locales`
+- `hint` will not be fixed: the booking-v3 form is retired
+
+The update does not name the one-day reports. They stay inside the parser count.
+
 <RenderStamp {signature} />
