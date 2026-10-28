@@ -1,6 +1,6 @@
 // Problems inside one merged ticket. The desk's cause is parser or hint.
-// Reports the desk already read as a one-day move are pulled out of that cause:
-// they were filed under it, and they are a different problem.
+// One-day reports stay in that cause, the way the exported table files them,
+// and they are also listed on their own. The desk footnotes them. It does not subtract them.
 
 import { causeOf, uniqueById, type Cause, type Report, type Tenant } from '#lib/kb/causes';
 
@@ -39,11 +39,14 @@ export function problemsFor(
   ticket: number,
 ): ProblemRow[] {
   const moved = new Set(oneDayMove);
+  const merged = uniqueById(reports).filter((item) => item.mergedInto === ticket);
   const buckets = new Map<ProblemName, Report[]>();
-  for (const r of uniqueById(reports).filter((item) => item.mergedInto === ticket)) {
-    const problem: ProblemName = moved.has(r.id) ? 'one-day' : (causeOf(r, tenantOf(r)) ?? 'unplaced');
+  for (const r of merged) {
+    const problem: ProblemName = causeOf(r, tenantOf(r)) ?? 'unplaced';
     buckets.set(problem, [...(buckets.get(problem) ?? []), r]);
   }
+  const oneDay = merged.filter((r) => moved.has(r.id));
+  if (oneDay.length > 0) buckets.set('one-day', oneDay);
   return ORDER.filter((problem) => (buckets.get(problem)?.length ?? 0) > 0).map((problem) =>
     row(problem, buckets.get(problem) ?? []),
   );

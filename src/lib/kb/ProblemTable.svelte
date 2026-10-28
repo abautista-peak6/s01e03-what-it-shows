@@ -8,7 +8,7 @@
   let { ticket }: { ticket: number } = $props();
 
   const rows = $derived(problemsFor(reports as Report[], notes.oneDayMove, tenantOf, ticket));
-  const total = $derived(rows.reduce((n, row) => n + row.reports.length, 0));
+  const total = $derived(new Set(rows.flatMap((row) => row.reports.map((r) => r.id))).size);
   const tags = (taggedAs: Record<string, number>) =>
     Object.entries(taggedAs)
       .sort((a, b) => b[1] - a[1])
