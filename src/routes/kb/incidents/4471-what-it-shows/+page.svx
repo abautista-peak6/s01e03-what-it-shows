@@ -1,0 +1,52 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: abautista-peak6
+status: open
+reviewed: 2026-10-28
+signature: abautista-peak6
+---
+
+<script>
+  import Callout from '#lib/kb/Callout.svelte';
+  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+The desk's page for [#4471](/kb/incidents/4471) marks the ticket known: one parser, one fix queued.
+The reports inside it are more than one problem. The table counts one row per report id. The export repeats some ids.
+
+<Callout kind="warn">
+One known issue was the wrong close. The counts below are the split.
+</Callout>
+
+<ProblemTable ticket={4471} />
+
+## Parser
+
+The shared parser reads the month before the day. These tenants write the day before the month.
+A booking on 7 April is stored as 4 July. That is `parser`.
+
+Intake tags a report `hint` when the browser locale is `en-US`. That tag is a guess.
+Reports with that guess stay under `parser` when they did not come through the booking-v3 form.
+The cause follows the tenant locale and the form, which is what `causeOf` already computes.
+
+## Hint
+
+`booking-v3` prints `MM/DD/YYYY` under the date field. People type the month first.
+The form then reads the field the tenant's way, day first. The calendar shows the same kind of swap.
+The bug is the hint, which is what `causeOf` returns for a form report on that form.
+
+## One day
+
+`desk-notes.json` lists these under `oneDayMove`. The day moves by one. They were still merged into #4471 and counted inside `parser`.
+
+- An invite says Tuesday 12 May. The calendar says Monday 11 May.
+- Every booking in June is one day off, and only June.
+- An invite is timestamped before the booking existed.
+- The same meeting is Tuesday in Lisbon and Monday in Toronto.
+- Tuesday 6 October shows as Monday.
+
+None of these exchanges the month and the day. The original table footnotes them and still files them under `parser`.
+
+<RenderStamp {signature} />
